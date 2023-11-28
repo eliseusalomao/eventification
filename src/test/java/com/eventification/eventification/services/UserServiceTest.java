@@ -1,5 +1,6 @@
 package com.eventification.eventification.services;
 
+import com.eventification.eventification.exceptions.InvalidName;
 import com.eventification.eventification.exceptions.MinimumPasswordLengthRequired;
 import com.eventification.eventification.exceptions.UserAlreadyExists;
 import com.eventification.eventification.models.user.User;
@@ -25,7 +26,7 @@ class UserServiceTest {
     private UserRepository repository;
 
     @Test
-    void createSuccess() throws UserAlreadyExists, MinimumPasswordLengthRequired {
+    void createSuccess() throws UserAlreadyExists, MinimumPasswordLengthRequired, InvalidName {
         User user = new User(1, "Eliseu", "eliseusalomao.dev@gmail.com", "1234567", UserRole.MC);
         User userFromService = service.create(user.getName(), user.getEmail(), user.getPassword(), user.getRole().toString());
 
