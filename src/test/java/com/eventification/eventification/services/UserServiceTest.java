@@ -35,10 +35,6 @@ class UserServiceTest {
 
     @Test
     void createFailedBecauseUserAlreadyExists() throws UserAlreadyExists, MinimumPasswordLengthRequired {
-        User user = new User(1, "Eliseu", "eliseusalomao.dev@gmail.com", "1234567", UserRole.MC);
-
-        repository.save(user);
-
         Assertions.assertThrows(UserAlreadyExists.class,
                 () ->  service.create("Other-user", "eliseusalomao.dev@gmail.com", "other-password", "other-role"));
     }
