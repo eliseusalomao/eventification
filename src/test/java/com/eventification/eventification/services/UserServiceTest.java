@@ -53,5 +53,19 @@ class UserServiceTest {
 
         assertEquals(userFromService.getName(), "Leydson");
     }
+    
+    @Test
+    void createSuccessWithValidName() throws UserAlreadyExists, MinimumPasswordLengthRequired, InvalidName {
+        User user = new User(9, "Rhian", "rhiangabriel3456@gmail.com", "123456789", UserRole.MC);
+        User userFromService = service.create(user.getName(), user.getEmail(), user.getPassword(), user.getRole().toString());
+
+        assertEquals(userFromService.getName(), "Rhian");
+    }
+    
+    @Test
+    void Teste() throws UserAlreadyExists, MinimumPasswordLengthRequired, InvalidName {
+        Assertions.assertThrows(InvalidName.class,
+                () ->  service.create("", "rhiangabriel3456@gmail.com", "other-password", "other-role"));
+    }
 
 }
