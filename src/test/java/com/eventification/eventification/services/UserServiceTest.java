@@ -41,4 +41,13 @@ class UserServiceTest {
         Assertions.assertThrows(UserAlreadyExists.class,
                 () ->  service.create("Other-user", "eliseusalomao.dev@gmail.com", "other-password", "other-role"));
     }
+    
+    @Test
+    void passwordShorterThanNecessary() throws UserAlreadyExists, MinimumPasswordLengthRequired {
+
+        Assertions.assertThrows(MinimumPasswordLengthRequired.class,
+                () ->  service.create("Other-user", "eliseusalomao.dev@gmail.com", "6", "other-role"));
+    }
+    
+    
 }
