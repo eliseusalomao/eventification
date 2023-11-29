@@ -18,7 +18,7 @@ public class UserController {
     UserService service;
 
     @PostMapping("/create")
-    public ResponseEntity<Object> create(@RequestBody User user) throws Exception {
+    public ResponseEntity<Object> create(@RequestBody User user) {
         try {
             User createdUser = service.create(user.getName(), user.getEmail(), user.getPassword(), user.getRole().toString());
             return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);

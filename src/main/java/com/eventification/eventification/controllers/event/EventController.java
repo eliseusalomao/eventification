@@ -18,11 +18,14 @@ public class EventController {
     EventService service;
 
     @PostMapping("/create")
-    public ResponseEntity<Event> create(@RequestBody Event event) {
-        System.out.println(event.getDescription());
+    public ResponseEntity<Object> create(@RequestBody Event event) {
        Event newEvent = new Event(event.getId(), event.getTitle(), event.getDescription());
-       Event createdEvent = service.create(newEvent);
 
-       return ResponseEntity.status(HttpStatus.CREATED).body(createdEvent);
+       try {
+           Event createdEvent = service.create(newEvent);
+           return ResponseEntity.status(HttpStatus.CREATED).body(createdEvent);
+       } catch (Exception err) {
+           return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err.getMessage());
+       }
     }
 }
