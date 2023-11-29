@@ -71,5 +71,4 @@ class UserServiceTest {
         Assertions.assertThrows(InvalidName.class,
                 () ->  service.create("", "rhiangabriel3456@gmail.com", "other-password", "other-role"));
     }
-
 }
