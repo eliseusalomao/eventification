@@ -67,8 +67,8 @@ class UserServiceTest {
     }
     
     @Test
-    void testToHandleInvalidUsers() throws UserAlreadyExists, MinimumPasswordLengthRequired, InvalidName {
+    void testToHandleInvalidUsers() throws MinimumPasswordLengthRequired, InvalidName {
         Assertions.assertThrows(InvalidName.class,
-                () ->  service.create("", "rhiangabriel3456@gmail.com", "other-password", "other-role"));
+                () ->  service.create("", "rhiangabriel3456@gmail", "other-password", "other-role"));
     }
 }
