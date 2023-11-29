@@ -1,9 +1,10 @@
 package com.eventification.eventification.models.user;
 
+import com.eventification.eventification.models.userEvent.UserEvent;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -15,7 +16,12 @@ public class User {
     private String name;
     private String email;
     private String password;
+
+    @Enumerated(EnumType.STRING)
     private UserRole role;
+
+    @OneToMany(mappedBy = "user")
+    List<UserEvent> events = new ArrayList<>();
 
     public User() {}
 
